@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 
 const Add = () => {
-    const url="https://tomato-vivek.onrender.com"
+    const url="https://zingo-api-vivek.onrender.com"
     const [image, setImage] = useState(false);
     const[data,setData] =useState({
         name:"",
@@ -33,6 +33,7 @@ const Add = () => {
     
 
         const response = await axios.post(`${url}/api/food/add`,formData);
+        console.log(response)
         if(response.data.success){
             setData({
                 name:"",

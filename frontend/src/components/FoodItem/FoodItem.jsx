@@ -4,9 +4,9 @@ import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 
 const FoodItem = ({id,name,price,description,image}) => {
-    const url ="http://localhost:4000"
+    // const url ="https://zingo-api-vivek.onrender.com"
     const[itemCount, setItemCount]=useState(0);
-    const {cartItems,addToCart,removeFromCart}=useContext(StoreContext);
+    const {cartItems,addToCart,removeFromCart,url}=useContext(StoreContext);
 
    
 

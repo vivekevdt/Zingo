@@ -7,10 +7,10 @@ import fs from "fs";
 const addFood = async (req,res)=>{
     
     let image_filename= `${req.file.filename}`;
-
+    console.log(req.body)
     const food = new foodModel({
         name:req.body.name,
-        description:req.body.dsescription,
+        description:req.body.description,
         price:req.body.price,
         category:req.body.category,
         image:image_filename

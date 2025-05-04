@@ -40,4 +40,3 @@ app.listen(port,()=>{
     console.log(`app is listening on port ${port}`);
 })
 
-// mongodb+srv://vivkkmr18:bodynS0ul@cluster0.78jyrqz.mongodb.net/?

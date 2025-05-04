@@ -10,7 +10,7 @@ import "./Orders.css"
 
 
 const Orders = () => {
-  const url = "http://localhost:4000";
+  const url = "https://zingo-api-vivek.onrender.com";
 
 
 
