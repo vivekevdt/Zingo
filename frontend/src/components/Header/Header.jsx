@@ -85,7 +85,7 @@ const Header = () => {
           "Indulge in a culinary adventure with our mouth-watering dishes,
           delivered hot and fresh right to your doorstep. Experience gourmet
           flavors, exclusive deals, and lightning-fast delivery—Order now from
-          Tomato and savor the best meals in town!"{" "}
+          Zingo and savor the best meals in town!"{" "}
         </p>
         <button>View Menu</button>
       </div>
