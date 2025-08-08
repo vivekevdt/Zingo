@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
+import CircularProgress from '@mui/material/CircularProgress';
 import { ToastContainer, toast } from 'react-toastify';
 import "./LoginPopup.css"
 import axios from 'axios';
@@ -15,6 +16,7 @@ const LoginPopup = ({ setshowLoginPopup }) => {
         email: "",
         password: ""
     });
+    const [isLoading, setIsLoading]= useState(false);
      
 
     const onChangeHandler = (event) => {
@@ -25,6 +27,7 @@ const LoginPopup = ({ setshowLoginPopup }) => {
 
     const onLogin = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
         let newUrl = url;
         if (currState === "Login") {
             newUrl = newUrl + "/api/user/login";
@@ -39,6 +42,8 @@ const LoginPopup = ({ setshowLoginPopup }) => {
                 localStorage.setItem("token", response.data.token);
                 await loadCartData(response.data.token);
                 setshowLoginPopup(false);
+                setIsLoading(false);
+
                 toast.success(response.data.message, {
                     position: "top-center",
                     autoClose: 2000
@@ -73,7 +78,7 @@ const LoginPopup = ({ setshowLoginPopup }) => {
                     <input onChange={onChangeHandler} value={data.email} name="email" type="email" placeholder='Your email' required />
                     <input onChange={onChangeHandler} value={data.password} name="password" type="password" placeholder='password' required />
                 </div>
-                <button type="submit">{currState === "Signup" ? "Create Account" : "Login"}</button>
+                <button type="submit">{isLoading?(<CircularProgress size="20px" color="inherit" />):currState === "Signup" ? "Create Account" : "Login"}</button>
                 <div className="login-popup-condition">
                     <input type="checkbox" required />
                     <p>By continuing, I agree to the terms of use & privacy policy</p>

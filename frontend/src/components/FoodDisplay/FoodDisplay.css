@@ -15,3 +15,22 @@ font-weight: 600;
 
 
 }
+.progress{
+    color:rgb(255, 160, 144);
+
+}
+.progress-container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.skeleton-box{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    margin-top: 30px;
+    gap:30px;
+    row-gap: 50px;
+
+
+}

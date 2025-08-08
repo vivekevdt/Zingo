@@ -28,7 +28,7 @@ function App() {
       <Navbar setshowLoginPopup={setshowLoginPopup}/>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/cart" element={<Cart></Cart>} />
+        <Route path="/cart" element={<Cart  setshowLoginPopup={setshowLoginPopup}/>} />
         <Route path="/order" element={<PlaceOrder></PlaceOrder>} />
         <Route path="/verify" element={<Verify/>} />
         <Route path="/myorders" element={<MyOrder/>} />

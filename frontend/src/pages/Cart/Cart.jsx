@@ -2,21 +2,32 @@ import React, { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import "./Cart.css";
 import { useNavigate } from "react-router-dom";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext);
+const Cart = ({setshowLoginPopup}) => {
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url,token } = useContext(StoreContext);
 
   const navigate = useNavigate();
+  
 
   const onsubmit = () => {
-
-    if (getTotalCartAmount() > 0) {
-      navigate("/order")
+    if(token){
+      if (getTotalCartAmount() > 0) {
+        navigate("/order")
+  
+      }
+      else {
+        alert("Add some items in Cart")
+      }
 
     }
-    else {
-      alert("Add some items in Cart")
+    else{
+      setshowLoginPopup(true)
+
+
     }
+
+    
 
   }
 
@@ -43,7 +54,9 @@ const Cart = () => {
                   <p>₹{item.price}</p>
                   <p>{cartItems[item._id]}</p>
                   <p>₹{item.price * cartItems[item._id]}</p>
-                  <p onClick={() => removeFromCart(item._id)} className="cross">x</p>
+                  <p onClick={() => removeFromCart(item._id)} className="cross">
+                    <DeleteForeverIcon />
+                  </p>
                 </div>
                 <hr />
               </>
@@ -56,18 +69,18 @@ const Cart = () => {
           <h2>Cart Total</h2>
           <div>
             <div className="cart-total-details">
-              <p>Sub T2347890otal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>Sub Total</p>
+              <p>₹{getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delevery Fee</p>
-              <p>{getTotalCartAmount() == 0 ? 0 : 2}</p>
+              <p>₹{getTotalCartAmount() == 0 ? 0 : 30}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>${getTotalCartAmount() == 0 ? 0 : getTotalCartAmount() + 2}</b>
+              <b>₹{getTotalCartAmount() == 0 ? 0 : getTotalCartAmount() + 30}</b>
             </div>
           </div>
           <button onClick={onsubmit}> PROCEED TO CHECKOUT</button>
