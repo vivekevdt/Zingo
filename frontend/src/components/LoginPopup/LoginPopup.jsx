@@ -10,14 +10,14 @@ import axios from 'axios';
 
 const LoginPopup = ({ setshowLoginPopup }) => {
     const { url, setToken, loadCartData, setCartItems } = useContext(StoreContext);
-    const [currState, setCurrState] = useState("Signup");
+    const [currState, setCurrState] = useState("Login");
     const [data, setData] = useState({
         name: "",
         email: "",
         password: ""
     });
-    const [isLoading, setIsLoading]= useState(false);
-     
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const onChangeHandler = (event) => {
         const name = event.target.name;
@@ -69,8 +69,20 @@ const LoginPopup = ({ setshowLoginPopup }) => {
             <form onSubmit={onLogin} className='login-popup-container'>
                 <div className="login-popup-title">
                     <h2>{currState}</h2>
+        
                     <img onClick={() => (setshowLoginPopup(false))} src={assets.cross_icon} alt="Close" />
                 </div>
+                {(currState == "Login") && (
+                        <div style={{
+                            lineHeight:"18px",
+                            marginBottom:"0px"
+                        }}>
+                            <p>Test email - test@gmail.com</p>
+                            <p>Test pswd - 12345678</p>
+                        </div>
+
+
+                    )}
                 <div className="login-popup-inputs">
                     {
                         currState === "Signup" ? <input name="name" onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name' required /> : null
@@ -78,7 +90,7 @@ const LoginPopup = ({ setshowLoginPopup }) => {
                     <input onChange={onChangeHandler} value={data.email} name="email" type="email" placeholder='Your email' required />
                     <input onChange={onChangeHandler} value={data.password} name="password" type="password" placeholder='password' required />
                 </div>
-                <button type="submit">{isLoading?(<CircularProgress size="20px" color="inherit" />):currState === "Signup" ? "Create Account" : "Login"}</button>
+                <button type="submit">{isLoading ? (<CircularProgress size="20px" color="inherit" />) : currState === "Signup" ? "Create Account" : "Login"}</button>
                 <div className="login-popup-condition">
                     <input type="checkbox" required />
                     <p>By continuing, I agree to the terms of use & privacy policy</p>
