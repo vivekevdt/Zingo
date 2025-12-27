@@ -12,6 +12,8 @@ const FoodItem = ({ id, name, price, description, image }) => {
 
 
 
+
+
     return (
         <div className='food-item'>
             {image ? (
