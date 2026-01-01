@@ -5,7 +5,8 @@ import "./Chatbot.css";
 import { StoreContext } from "../../context/StoreContext";
 
 export default function Chatbot() {
-  const { token, loadCartData } = useContext(StoreContext);
+  const { token, loadCartData,url } = useContext(StoreContext);
+
 
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -41,7 +42,7 @@ export default function Chatbot() {
       const headers = { "Content-Type": "application/json" };
       if (token) headers.token = token;
 
-      const res = await fetch("http://localhost:4000/api/chat", {
+      const res = await fetch(`${url}/api/chat`, {
         method: "POST",
         headers,
         body: JSON.stringify({ message: userText }),

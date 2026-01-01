@@ -6,7 +6,6 @@ export const StoreContext=createContext(null);
 
 const StoreContextProvider=(props)=>{
 
-
     const [cartItems, setCartItems]=useState({});
 
     const [token, setToken]=useState("");
@@ -15,7 +14,7 @@ const StoreContextProvider=(props)=>{
     
     const[nightMode,setNightMode]=useState(false);
 
-    const url ="http://localhost:4000"
+    const url = import.meta.env.VITE_BASE_API_URL || "http://localhost:4000";
 
     const addToCart= async (itemId)=>{
         if(!cartItems[itemId]){
@@ -100,7 +99,8 @@ const StoreContextProvider=(props)=>{
         url,
         nightMode,
         setNightMode,
-        loadCartData
+        loadCartData,
+        
 
         
     }
