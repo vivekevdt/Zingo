@@ -14,9 +14,19 @@ const placeOrder = async (req, res) => {
       userId: req.body.userId,
       item: req.body.items,
       amount: req.body.amount,
-      address: req.body.address
+      address: req.body.address,
+      paymentType: req.body.paymentType,
+
     });
     await newOrder.save();
+
+    if (req.body.paymentType === "ONLINE") {
+      newOrder.payment = true;
+      await newOrder.save();
+      return res.json({ data: newOrder, success: true });
+    }
+
+
 
     const line_items = req.body.items.map((item) => ({
       price_data: {
