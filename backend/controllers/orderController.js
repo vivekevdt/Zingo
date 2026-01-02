@@ -20,7 +20,7 @@ const placeOrder = async (req, res) => {
     });
     await newOrder.save();
 
-    if (req.body.paymentType === "ONLINE") {
+    if (req.body.paymentType === "COD") {
       newOrder.payment = true;
       await newOrder.save();
       return res.json({ data: newOrder, success: true });

@@ -64,8 +64,14 @@ const PlaceOrder = () => {
         { headers: { token } }
       );
 
-      if (response.data.success) {
-        setShowSuccessModal(true);
+   if (response.data.success) {
+        if (paymentType === "ONLINE") {
+          window.location.replace(response.data.session_url);
+        } else {
+          setShowSuccessModal(true);
+        }
+      } else {
+        alert("Error placing order");
       }
     } catch (error) {
       console.error(error);
