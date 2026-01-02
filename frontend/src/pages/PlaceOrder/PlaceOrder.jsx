@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import "./PlaceOrder.css";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, food_list, cartItems, url } =
     useContext(StoreContext);
+
+  const navigate = useNavigate();
 
   const [paymentType, setPaymentType] = useState("COD");
   const [loading, setLoading] = useState(false);
@@ -263,7 +266,7 @@ const PlaceOrder = () => {
             <button
               onClick={() => {
                 setShowSuccessModal(false);
-                window.location.href = "/myorders";
+                navigate("/myorders");
               }}
             >
               View My Orders
