@@ -48,6 +48,13 @@
         width: 40px;
     }
 }
+.order-loader {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 
 
 

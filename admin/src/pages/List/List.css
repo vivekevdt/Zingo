@@ -29,6 +29,46 @@
     cursor:pointer;
 }
 
+.loading-text {
+  margin-top: 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+.empty-text {
+  margin: 20px;
+  color: #777;
+}
+
+.remove-btn {
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+}
+
+.remove-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.list-loader {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.loading-text {
+  text-align: center;
+  padding: 20px;
+}
+
+.remove-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+
 
 
 

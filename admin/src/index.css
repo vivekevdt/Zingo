@@ -36,3 +36,11 @@ hr{
   color:#6d6d6d;
 
 }
+
+.Toastify__toast-container {
+  z-index: 999999 !important;
+}
+
+.Toastify__toast {
+  border-radius: 8px;
+}
