@@ -2,59 +2,54 @@ import React, { useContext, useState, useEffect } from 'react';
 import "./FoodDisplay.css";
 import { StoreContext } from '../../context/StoreContext';
 import FoodItem from '../FoodItem/FoodItem';
-import axios from "axios";
-import { CircularProgress, Skeleton, Box } from '@mui/material';
+import { Skeleton, Box } from '@mui/material';
 
 const FoodDisplay = ({ category }) => {
-  const [loading, setLoading] = useState(true);
   const { food_list } = useContext(StoreContext);
+  const [loading, setLoading] = useState(true);
 
-  // Simulate loading
+  // ✅ Real loading based on food_list
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (food_list && food_list.length > 0) {
       setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+    } else {
+      setLoading(true);
+    }
+  }, [food_list]);
 
   return (
     <div className='food-display' id='food-display'>
       <h2>Top dishes near you</h2>
 
       {loading ? (
-        // ✅ Loading skeletons
+        // ✅ Skeleton while data is loading
         <div className='skeleton-box'>
-          {new Array(4).fill(null).map((_, index) => (
-            <React.Fragment key={index}>
-              <Box sx={{ pt: 0.5 }}>
+          {Array.from({ length: 4 }).map((_, index) => (
+            <Box key={index} sx={{ pt: 0.5 }}>
               <Skeleton variant="rectangular" width={210} height={118} />
-
-                <Skeleton width="70%" />
-                <Skeleton width="50%" />
-                <Skeleton width="20%" />
-              </Box>
-            </React.Fragment>
+              <Skeleton width="70%" />
+              <Skeleton width="50%" />
+              <Skeleton width="20%" />
+            </Box>
           ))}
-
         </div>
       ) : (
-        // ✅ Render food items when not loading
+        // ✅ Render food items after data arrives
         <div className="food-display-list">
-          {food_list?.map((item, index) => {
-            if (category === "All" || category === item.category) {
-              return (
-                <FoodItem
-                  key={index}
-                  id={item?._id}
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                  image={item.image}
-                />
-              );
-            }
-            return null;
-          })}
+          {food_list
+            ?.filter(
+              item => category === "All" || category === item.category
+            )
+            .map(item => (
+              <FoodItem
+                key={item._id}
+                id={item._id}
+                name={item.name}
+                description={item.description}
+                price={item.price}
+                image={item.image}
+              />
+            ))}
         </div>
       )}
     </div>
